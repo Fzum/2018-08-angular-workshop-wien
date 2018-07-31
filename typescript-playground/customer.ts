@@ -1,9 +1,5 @@
 export class Customer {
-    private id: number;
-
-    constructor(id: number) {
-        this.id = id;
-    }
+    constructor(private id: number) {}
 
     fooBar() {
         var self = this;
@@ -18,6 +14,7 @@ export class Customer {
 
         const city = '"Vienna"';
         const text = 'Hello\n' + city + '\n!';
+        debugger;
         console.log(text);
         
         const text2 = `Hello ${city}

@@ -14,6 +14,7 @@ class Customer {
         console.log(callback2());
         const city = '"Vienna"';
         const text = 'Hello\n' + city + '\n!';
+        debugger;
         console.log(text);
         const text2 = `Hello ${city}
 we are doing Angular!`;
