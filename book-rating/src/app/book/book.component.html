@@ -1,2 +1,20 @@
-<h2>{{ book.title }} – {{ book.rating }}</h2>
-<p>{{ book.description }}</p>
+<div class="card mb-4">
+  <div class="card-body bg-light">
+    <img class="img-thumbnail float-right"
+      src="http://api.angular.schule/avatar/{{ book.rating }}">
+    <div class="card-title">
+      <h2>
+        {{ book.title }}
+        <span class="badge badge-secondary">{{ book.rating }}</span>
+      </h2>
+    </div>
+
+    <p>
+        <span *ngFor="let s of getStars()">⭐️</span>
+    </p>
+
+    <p>
+      {{ book.description }}
+    </p>
+  </div>
+</div>

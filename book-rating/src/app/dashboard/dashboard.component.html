@@ -5,3 +5,6 @@
 <ul>
   <li *ngFor="let b of books; index as i; even as e">{{ i + 1 }}. {{ b.title }}</li>
 </ul>
+
+<hr>
+<strong>Anzahl Bücher:</strong> {{ books.length }}
