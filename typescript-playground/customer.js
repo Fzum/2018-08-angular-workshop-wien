@@ -4,6 +4,12 @@ class Customer {
     constructor(id) {
         this.id = id;
     }
+    myMethod(arg) {
+        if (typeof arg === 'string') {
+            return parseInt(arg, 10);
+        }
+        return arg;
+    }
     fooBar() {
         var self = this;
         function callback() {

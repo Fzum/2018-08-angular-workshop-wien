@@ -1,6 +1,13 @@
 export class Customer {
     constructor(private id: number) {}
 
+    myMethod(arg: string | number): number {
+        if(typeof arg === 'string') {
+            return parseInt(arg, 10);
+        }
+        return arg;
+    }
+
     fooBar() {
         var self = this;
         function callback() {
