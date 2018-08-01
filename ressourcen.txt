@@ -1,3 +1,4 @@
 https://angular.schule/blog/2018-05-one-app-per-customer
 https://doesitmutate.xyz/
 https://github.com/mgechev/angular-performance-checklist
+https://angular.io/guide/testing

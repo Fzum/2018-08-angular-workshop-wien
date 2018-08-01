@@ -5,7 +5,7 @@
     <div class="card-title">
       <h2>
         {{ book.title }}
-        <span class="badge badge-secondary">{{ book.rating }}</span>
+        <span class="badge badge-secondary testing-rating-box">{{ book.rating }}</span>
       </h2>
     </div>
 
@@ -18,7 +18,7 @@
     </p>
 
 
-    <button class="btn btn-success mr-2" (click)="rateUp()">+</button>
+    <button class="btn btn-success mr-2 testing-rate-up-btn" (click)="rateUp()">+</button>
     <button class="btn btn-danger" (click)="rateDown()">–</button>
   </div>
 </div>
