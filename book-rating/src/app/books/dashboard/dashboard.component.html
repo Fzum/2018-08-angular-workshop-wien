@@ -1,6 +1,7 @@
 <br-book
   *ngFor="let b of books; trackBy: trackBook"
-  [book]="b"></br-book>
+  [book]="b"
+  (rate)="updateBook($event)"></br-book>
 
 <ul>
   <li *ngFor="let b of books; index as i; even as e">{{ i + 1 }}. {{ b.title }}</li>

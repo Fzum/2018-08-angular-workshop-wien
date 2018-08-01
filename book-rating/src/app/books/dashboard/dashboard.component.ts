@@ -29,6 +29,15 @@ export class DashboardComponent implements OnInit {
     ];  
   }
 
+  updateBook(book: Book) {
+    // Liste bereinigen
+    const filteredList = this.books.filter(b => b.isbn !== book.isbn);
+
+    // neues Buch einfügen // ggf. push() verwenden
+    this.books = [...filteredList, book]
+      .sort((a, b) => b.rating - a.rating);
+  }
+
   trackBook(index: number, item: Book) {
     return item.isbn;
   }
