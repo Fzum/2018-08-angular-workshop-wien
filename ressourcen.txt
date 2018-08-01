@@ -2,3 +2,7 @@ https://angular.schule/blog/2018-05-one-app-per-customer
 https://doesitmutate.xyz/
 https://github.com/mgechev/angular-performance-checklist
 https://angular.io/guide/testing
+
+https://github.com/angular-schule/demo-api-codegen
+https://angular.schule/blog/2018-06-apollo-graphql-code-generator
+https://compodoc.app/
