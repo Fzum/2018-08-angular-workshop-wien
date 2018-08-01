@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e --webdriver-update=false",
+    "wd-update": "webdriver-manager update --proxy \"http://172.30.9.12:8080\" --ignore_ssl"
   },
   "private": true,
   "dependencies": {
