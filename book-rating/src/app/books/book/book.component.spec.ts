@@ -6,6 +6,16 @@ import { BookComponent } from './book.component';
 import { BookRatingService } from '../shared/book-rating.service';
 import { Book } from '../shared/book';
 
+const serviceMock = {
+  rateUp: (book: Book) => {
+    console.log('RATE UP IN MOCK CALLED!');
+    return { ...book };
+  },
+  rateDown: (book: Book) => {
+    return { ...book };
+  }
+}
+
 
 describe('BookComponent', () => {
   let component: BookComponent;
@@ -14,7 +24,9 @@ describe('BookComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ BookComponent ],
-      providers: [BookRatingService]
+      providers: [
+        { provide: BookRatingService, useValue: serviceMock }
+      ]
     })
     .overrideComponent(BookComponent, {
       set: { // Strategy manuell auf default setzen, sonst funktioniert CD nicht
