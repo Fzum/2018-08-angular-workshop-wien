@@ -4,7 +4,6 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BooksModule } from './books/books.module';
 import { ButtonSharedModule } from './button-shared/button-shared.module';
 import { registerLocaleData } from '@angular/common';
 import localeAt from '@angular/common/locales/de-AT'; 
@@ -16,7 +15,6 @@ import localeAt from '@angular/common/locales/de-AT';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BooksModule,
     ButtonSharedModule,
     HttpClientModule
   ],

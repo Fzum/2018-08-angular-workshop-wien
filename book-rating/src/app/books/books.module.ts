@@ -8,6 +8,7 @@ import { BookComponent } from './book/book.component';
 import { ButtonSharedModule } from '../button-shared/button-shared.module';
 import { CreateBookComponent } from './create-book/create-book.component';
 import { BookDetailsComponent } from './book-details/book-details.component';
+import { RxjsComponent } from './rxjs/rxjs.component';
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import { BookDetailsComponent } from './book-details/book-details.component';
     DashboardComponent,
     BookComponent,
     CreateBookComponent,
-    BookDetailsComponent
+    BookDetailsComponent,
+    RxjsComponent
   ],
   exports: [
     DashboardComponent
