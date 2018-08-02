@@ -9,12 +9,14 @@ import { BookStoreService } from '../shared/book-store.service';
 })
 export class DashboardComponent implements OnInit {
 
-  books: Book[];
+  books: Book[] = [];
 
   constructor(private bss: BookStoreService) { }
 
   ngOnInit() {
-    this.books = this.bss.getAllStatic();  
+    // this.books = this.bss.getAllStatic();  
+    this.bss.getAll()
+      .subscribe(books => this.books = books);
   }
 
   updateBook(book: Book) {
