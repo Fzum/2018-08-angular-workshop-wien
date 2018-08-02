@@ -17,6 +17,21 @@ export class BookStoreService {
     return this.http.get<Book[]>(`${this.apiUrl}/books`);
     // TODO: Mappen auf echtes Book
   }
+  
+  getSingle(isbn: string): Observable<Book> {
+    return this.http.get<Book>(`${this.apiUrl}/book/${isbn}`);
+    // TODO: Mappen auf echtes Book
+  }
+
+  create(book: Book): Observable<any> {
+    return this.http
+      .post(`${this.apiUrl}/book`, book, { responseType: 'text' });
+  }
+
+  update(book: Book): Observable<any> {
+    return this.http
+      .put(`${this.apiUrl}/book`, book, { responseType: 'text' });
+  }
 
   getAllStatic(): Book[] {
     return [
