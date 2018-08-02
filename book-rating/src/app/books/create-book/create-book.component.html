@@ -1,7 +1,13 @@
-<form [formGroup]="bookForm">
+<form [formGroup]="bookForm" (ngSubmit)="submitForm()">
   <div class="form-group">
     <label>ISBN</label>
     <input type="text" class="form-control" formControlName="isbn">
+    <div class="feedback-red" *ngIf="bookForm.get('isbn').invalid && bookForm.get('isbn').dirty">ISBN ist ungültig</div>
+    <div class="feedback-red" *ngIf="bookForm.get('isbn').hasError('minlength')">
+      ISBN ist ungültig,
+      {{ bookForm.get('isbn').getError('minlength').actualLength }} Zeichen eingegeben,
+      {{ bookForm.get('isbn').getError('minlength').requiredLength }} erforderlich
+    </div>
   </div>
 
   <div class="form-group">
@@ -12,6 +18,12 @@
   <div class="form-group">
     <label>Description</label>
     <input type="text" class="form-control" formControlName="description">
+  </div>
+
+
+  <div class="form-group">
+    <button type="submit" class="btn btn-danger mr-2" [disabled]="bookForm.invalid">Submit</button>
+    <button (click)="logForm()" type="button" class="btn btn-secondary">Log form</button>
   </div>
 </form>
 
