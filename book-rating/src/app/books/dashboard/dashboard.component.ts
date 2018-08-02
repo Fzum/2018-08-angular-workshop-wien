@@ -18,6 +18,12 @@ export class DashboardComponent implements OnInit {
       .subscribe(books => this.books = books);
   }
 
+  createBook(book: Book) {
+    this.bss.create(book).subscribe(() => {
+      this.books = [...this.books, book]; // oder bestehende updateBook() verwenden
+    });
+  }
+
   updateBook(book: Book) {
     // Liste bereinigen
     const filteredList = this.books.filter(b => b.isbn !== book.isbn);

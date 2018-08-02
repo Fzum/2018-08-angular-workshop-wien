@@ -42,6 +42,15 @@ export class CreateBookComponent implements OnInit {
     }
 
     this.create.emit(newBook);
+    this.resetForm();
+  }
+  
+  resetForm() {
+    this.bookForm.reset({
+      isbn: '',
+      title: '',
+      description: ''
+    });
   }
 
 }

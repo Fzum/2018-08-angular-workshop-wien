@@ -6,3 +6,5 @@ https://angular.io/guide/testing
 https://github.com/angular-schule/demo-api-codegen
 https://angular.schule/blog/2018-06-apollo-graphql-code-generator
 https://compodoc.app/
+
+https://angular.io/guide/elements
