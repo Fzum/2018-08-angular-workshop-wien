@@ -9,3 +9,4 @@ https://compodoc.app/
 
 https://angular.io/guide/elements
 https://toddmotto.com/building-tesla-range-calculator-angular-2-reactive-forms
+https://github.com/fmalcher/angular-websocket-demo
