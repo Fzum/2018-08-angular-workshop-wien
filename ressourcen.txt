@@ -8,3 +8,4 @@ https://angular.schule/blog/2018-06-apollo-graphql-code-generator
 https://compodoc.app/
 
 https://angular.io/guide/elements
+https://toddmotto.com/building-tesla-range-calculator-angular-2-reactive-forms

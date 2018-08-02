@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Book } from '../shared/book';
 import { BookStoreService } from '../shared/book-store.service';
+import { FormState } from '../shared/form-state.enum';
 
 @Component({
   selector: 'br-dashboard',
@@ -9,6 +10,7 @@ import { BookStoreService } from '../shared/book-store.service';
 })
 export class DashboardComponent implements OnInit {
   books: Book[] = [];
+  createFormState = FormState.Default;
 
   constructor(private bss: BookStoreService) { }
 
@@ -19,8 +21,13 @@ export class DashboardComponent implements OnInit {
   }
 
   createBook(book: Book) {
+    this.createFormState = FormState.Submitted;
     this.bss.create(book).subscribe(() => {
       this.books = [...this.books, book]; // oder bestehende updateBook() verwenden
+      this.createFormState = FormState.Success;
+    },
+    () => {
+      this.createFormState = FormState.Fail;
     });
   }
 

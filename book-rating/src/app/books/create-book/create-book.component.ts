@@ -1,18 +1,35 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, OnChanges } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Book } from '../shared/book';
+import { FormState } from '../shared/form-state.enum';
 
 @Component({
   selector: 'br-create-book',
   templateUrl: './create-book.component.html',
   styleUrls: ['./create-book.component.scss']
 })
-export class CreateBookComponent implements OnInit {
+export class CreateBookComponent implements OnInit, OnChanges {
 
   bookForm: FormGroup;
   @Output() create = new EventEmitter<Book>();
+  @Input() state: FormState;
 
   constructor() { }
+
+  ngOnChanges() {
+    switch(this.state) {
+      case FormState.Success: {
+        alert('SUCCESS');
+        this.resetForm();
+        break;
+      }
+
+      case FormState.Fail: {
+        alert('FAIL :-(');
+        break;
+      }
+    }
+  }
 
   ngOnInit() {
     this.bookForm = new FormGroup({
@@ -42,7 +59,6 @@ export class CreateBookComponent implements OnInit {
     }
 
     this.create.emit(newBook);
-    this.resetForm();
   }
   
   resetForm() {
