@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subject, timer, Subscription } from 'rxjs';
+import { Subject, timer, Subscription, Observable } from 'rxjs';
 import { ExerciseService } from '../exercise.service';
 import { takeUntil } from '../../../../node_modules/rxjs/operators';
 
@@ -13,10 +13,13 @@ export class UnsubscribeComponent implements OnInit, OnDestroy {
   logStream$ = new Subject<string | number>();
   destroy$ = new Subject();
 
+  interval$: Observable<number>;
+
   constructor(private es: ExerciseService) {}
 
   ngOnInit() {
     const interval$ = timer(0, 1000);
+    this.interval$ = interval$;
 
     interval$.pipe(
       takeUntil(this.destroy$)
