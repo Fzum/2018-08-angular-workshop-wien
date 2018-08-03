@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subject, timer } from 'rxjs';
+import { Subject, timer, Subscription } from 'rxjs';
 import { ExerciseService } from '../exercise.service';
 
 @Component({
@@ -10,12 +10,14 @@ import { ExerciseService } from '../exercise.service';
 export class UnsubscribeComponent implements OnInit, OnDestroy {
 
   logStream$ = new Subject<string | number>();
+  timerSub: Subscription;
+
   constructor(private es: ExerciseService) {}
 
   ngOnInit() {
     const interval$ = timer(0, 1000);
 
-    interval$.pipe(
+    this.timerSub = interval$.pipe(
       // ...
     ).subscribe(
       msg => this.log(msg),
@@ -26,6 +28,7 @@ export class UnsubscribeComponent implements OnInit, OnDestroy {
 
   destroy() {
     this.logStream$.next('DESTROY');
+    this.timerSub.unsubscribe();
   }
 
 
