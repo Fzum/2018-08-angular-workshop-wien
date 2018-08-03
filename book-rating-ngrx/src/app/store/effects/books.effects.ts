@@ -13,6 +13,20 @@ import * as booksActions from '../actions/books.actions';
 @Injectable()
 export class BooksEffects {
 
+  @Effect() loadBooks$ = this.actions$.pipe(
+    ofType(BooksActionTypes.LoadBooks),
+    mergeMap(() => this.bs.getAll().pipe(
+      map(books => new booksActions.LoadBooksSuccess(books)),
+      catchError(err => of(new booksActions.LoadBooksFail(err)))
+    ))
+  );
+
+  @Effect({ dispatch: false })
+  showSuccess$ = this.actions$.pipe(
+    ofType(BooksActionTypes.LoadBooksSuccess),
+    tap(() => console.log('Bücher wurden geladen!'))
+  );
+
   constructor(
     private actions$: Actions,
     private bs: BookStoreService,
