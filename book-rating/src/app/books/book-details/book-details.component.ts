@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { map, switchMap } from 'rxjs/operators';
+import { PARAMETERS } from '@angular/core/src/util/decorators';
+import { BookStoreService } from '../shared/book-store.service';
+import { Book } from '../shared/book';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'br-book-details',
@@ -8,18 +13,20 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class BookDetailsComponent implements OnInit {
 
-  isbn: string;
+  book$: Observable<Book>;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private bss: BookStoreService) { }
 
   ngOnInit() {
     // Synchroner Weg:
     // this.isbn = this.route.snapshot.paramMap.get('isbn');
     
     // Asynchroner Weg:
-    this.route.paramMap.subscribe(params => {
-      this.isbn = params.get('isbn');
-    });
+    
+    this.book$ = this.route.paramMap.pipe(
+      map(params => params.get('isbn')),
+      switchMap(isbn => this.bss.getSingle(isbn))
+    );
   }
 
 }

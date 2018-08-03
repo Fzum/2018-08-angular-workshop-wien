@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 
 import { Book } from './book';
-import { retry, catchError, map } from 'rxjs/operators';
+import { retry, catchError, map, delay } from 'rxjs/operators';
 import { BookResponse } from './book-response';
 
 @Injectable({
@@ -33,7 +33,8 @@ export class BookStoreService {
   
   getSingle(isbn: string): Observable<Book> {
     return this.http.get<BookResponse>(`${this.apiUrl}/book/${isbn}`).pipe(
-      map(res => this.mapToBook(res))
+      map(res => this.mapToBook(res)),
+      // delay(2000) // DEBUG
     );
   }
 
