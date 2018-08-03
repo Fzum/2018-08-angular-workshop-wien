@@ -20,7 +20,13 @@ export class ChatComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    
+    forkJoin(
+      this.msg.julia$.pipe(map(msg => `👧🏻 JULIA: ${msg}`)),
+      this.msg.georg$.pipe(map(msg => `👦🏻 GEORG: ${msg}`)),
+      this.msg.john$.pipe(map(msg => `👦🏾 JOHN: ${msg}`)),
+    ).pipe(
+      map(arr => arr.toString())
+    ).subscribe(this.logStream$);
   }
 
 }

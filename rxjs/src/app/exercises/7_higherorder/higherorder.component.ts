@@ -20,7 +20,9 @@ export class HigherorderComponent implements OnInit {
   ngOnInit() {
     
     /******************************/
-
+    this.result$ = this.source$.pipe(
+      exhaustMap(tier => this.es.echo(tier, 3))
+    )
 
     /******************************/
     
