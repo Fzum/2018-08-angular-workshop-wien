@@ -38,6 +38,16 @@ export class BookStoreService {
     );
   }
 
+
+  search(term: string): Observable<Book[]> {
+    return this.http.get<BookResponse[]>(`${this.apiUrl}/books/search/${term}`).pipe(
+      map(rawBooks => rawBooks ? rawBooks : []),
+      map(rawBooks => rawBooks.map(
+        rawBook => this.mapToBook(rawBook))
+      )
+    );
+  }
+
   create(book: Book): Observable<any> {
     return this.http
       .post(`${this.apiUrl}/book`, book, { responseType: 'text' });

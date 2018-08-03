@@ -2,6 +2,9 @@ import { Component, OnInit, Output, EventEmitter, Input, OnChanges } from '@angu
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Book } from '../shared/book';
 import { FormState } from '../shared/form-state.enum';
+import { debounceTime, distinctUntilChanged, switchMap, map, filter } from 'rxjs/operators';
+import { BookStoreService } from '../shared/book-store.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'br-create-book',
@@ -14,7 +17,9 @@ export class CreateBookComponent implements OnInit, OnChanges {
   @Output() create = new EventEmitter<Book>();
   @Input() state: FormState;
 
-  constructor() { }
+  results$: Observable<string[]>;
+
+  constructor(private bss: BookStoreService) { }
 
   ngOnChanges() {
     switch(this.state) {
@@ -43,6 +48,16 @@ export class CreateBookComponent implements OnInit, OnChanges {
       ]),
       description: new FormControl('')
     });
+
+
+    this.results$ = this.bookForm.get('title').valueChanges.pipe(
+      filter(title => title.length > 3),
+      debounceTime(1000),
+      distinctUntilChanged(),
+      switchMap(title => this.bss.search(title)),
+      map(books => books.map(book => book.title))
+    );
+
   }
 
   logForm() {

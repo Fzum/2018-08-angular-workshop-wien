@@ -29,6 +29,11 @@ State: {{ state }}
   </div>
 </form>
 
+<ul *ngIf="results$ | async as results">
+  <li *ngFor="let title of results">{{ title }}</li>
+</ul>
+
+
 <pre>
 {{ bookForm.value | json }}
 </pre>
