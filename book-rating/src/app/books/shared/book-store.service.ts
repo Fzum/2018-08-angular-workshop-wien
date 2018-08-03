@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 import { Book } from './book';
+import { retry, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,15 @@ export class BookStoreService {
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<Book[]> {
-    return this.http.get<Book[]>(`${this.apiUrl}/books`);
+    return this.http.get<Book[]>(`${this.apiUrl}/books`).pipe(
+      retry(3),
+      catchError(err => of([{
+        isbn: '',
+        title: 'Fehlerbuch',
+        description: 'Böser Fehler aufgetreten',
+        rating: 1
+      }]))
+    );
     // TODO: Mappen auf echtes Book
   }
   
